@@ -7,16 +7,7 @@
 
 <body>
 
-<table>
-<tr>
-<th>pk</th>
-<th>title</th>
-<th>writer</th>
-<th>date</th>
-<th>hits</th>
-</tr>
-
-</table>
+hihi
 
 </body>
 

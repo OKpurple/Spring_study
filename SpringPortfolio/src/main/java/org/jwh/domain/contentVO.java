@@ -2,7 +2,7 @@ package org.jwh.domain;
 
 import java.util.Date;
 
-public class contentVO {
+public class ContentVO {
 	int cid;
 	String title;
 	String writer;
@@ -10,15 +10,21 @@ public class contentVO {
 	Date regdate;
 	int hits;
 	
-	public contentVO(int cid, String title, String writer, String content, Date regdate, int hits) {
-		super();
-		this.cid = cid;
-		this.title = title;
-		this.writer = writer;
-		this.content = content;
-		this.regdate = regdate;
-		this.hits = hits;
+	@Override
+	public String toString() {
+		return "contentVO [cid=" + cid + ", title=" + title + ", writer=" + writer + ", content=" + content
+				+ ", regdate=" + regdate + ", hits=" + hits + "]";
 	}
+
+//	public ContentVO(int cid, String title, String writer, String content, Date regdate, int hits) {
+//		super();
+//		this.cid = cid;
+//		this.title = title;
+//		this.writer = writer;
+//		this.content = content;
+//		this.regdate = regdate;
+//		this.hits = hits;
+//	}
 
 	public int getCid() {
 		return cid;

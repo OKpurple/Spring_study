@@ -14,5 +14,10 @@
   	 
   	</select>
   
+  <insert id="create">
+  	insert into content (title,writer,content)
+  	values(#{title},#{writer},#{content})
+  </insert>
+  
   
   </mapper>

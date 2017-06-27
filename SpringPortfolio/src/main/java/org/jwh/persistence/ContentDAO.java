@@ -20,4 +20,8 @@ public class ContentDAO {
 		System.out.println("dao start");
 		return sqlSession.selectList(namespace+".listAll");
 	}
+	
+	public void create(ContentVO vo){
+		sqlSession.insert(namespace+".create",vo);
+	}
 }

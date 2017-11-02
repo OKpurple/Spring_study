@@ -24,3 +24,6 @@ $service tomcat7 restart
 
 - war파일명을 포트뒤에 적어줘야함 (root로 설정가능)
 	- __아이피주소:8080/war프로젝트명/api__
+	
+	
+- 포트 확인 : `$netstat -tnlp`

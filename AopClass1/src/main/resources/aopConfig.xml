@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<bean id = "profiler" class = "spring.jwh.aop.Profiler"></bean>
+	<bean id = "someClass" class = "spring.jwh.some.SomeClass"></bean>
+	
+	<bean id = "cache" class ="spring.jwh.aop.ArticleCacheAdvice"></bean>
+	<bean id = "articleDao" class="spring.ch06.board.MemoryArticleDao"></bean>
+	
+	<bean id ="writer" class = "spring.ch06.board.WriteArticleServiceImpl">
+		<constructor-arg ref="articleDao"/>
+	</bean>
+	
+	<bean id = "reader" class = "spring.ch06.board.ReadArticleServiceImpl">
+		<property name="articleDao" ref="articleDao"/>
+	</bean>
+	
+	
+	
+	<aop:config>
+	
+		<aop:aspect id = "cacheAspect" ref="cache">
+			<aop:pointcut expression="execution(public * *..ReadArticleService.*(..))" id="queryMethod"/>
+			<aop:around method="cache" pointcut-ref="queryMethod"></aop:around>
+		</aop:aspect>
+		
+		<aop:aspect id="traceAspect" ref="profiler">
+			<aop:pointcut id="publicMethod" expression="execution(public * spring.jwh..*(..))" />
+			<aop:around pointcut-ref="publicMethod" method="trace" />
+		</aop:aspect>
+		
+	</aop:config>
+		
+		
+
+</beans>

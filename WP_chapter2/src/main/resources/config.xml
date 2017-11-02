@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="user1" class="chapter2.User">
+		<constructor-arg value = "woohee"></constructor-arg>
+		<constructor-arg value = "1234"></constructor-arg>
+	</bean>
+	
+	<bean id="user2" class="chapter2.User">
+		<constructor-arg value = "Jeoung"></constructor-arg>
+		<constructor-arg value = "1234"></constructor-arg>
+	</bean>
+	
+	<bean id = "userRepository" class = "chapter2.UserRepository">
+		<property name = "users">
+			<list>
+				<ref bean = "user1"/>
+				<ref bean = "user2"/>	
+			</list>
+		</property>
+		
+	</bean>
+	
+	<bean id = "authFailLogger" class = "chapter2.AuthFailLogger">
+		<property name = "threshold" value="3"/>
+	</bean>
+	
+	<bean id = "authService" class = "chapter2.AuthenticationService">
+		<property name = "userRepository">
+			<ref bean = "userRepository"></ref>
+		</property>
+		<property name = "failLogger">
+			<ref bean = "authFailLogger"></ref>
+		</property>
+	</bean>
+	
+	
+	
+</beans>
